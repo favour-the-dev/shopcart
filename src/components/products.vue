@@ -1,14 +1,20 @@
 <script setup>
+    import { useRouter, useRoute } from 'vue-router'
+    const router = useRouter();
     const props = defineProps({
         url: String,
+        id: String,
         item: String,
         liked: false,
     })
     const test1 = props.url
+    const changeRoute = (id)=>{
+        router.push(`/item/:${id}`)
+    }
 </script>
 
 <template>
-    <div class="p-2 w-4/3 h-full flex flex-col border-2 border-black border-opacity-50 items-center justify-center rounded-lg shadow-md hover:scale-[1.04] duration-100 ease-linear">
+    <div class="p-2 w-4/3 h-full flex flex-col border-2 border-black border-opacity-50 items-center justify-center rounded-lg shadow-md hover:scale-[1.04] duration-100 ease-linear" @click="changeRoute(props.id)">
         <div class="w-full h-28 md:w-full md:h-36 rounded-lg shadow-sm">
             <img :src="test1" alt="" class="rounded-lg w-full h-full">
         </div>

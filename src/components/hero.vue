@@ -40,7 +40,7 @@
         <h2 class="text-md font-semibold uppercase my-4">Products</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <div :class="`mb-2`" v-for="(prod, index) in newPodlist" :key="index">
-                <products :url="`${prod.url}`" :item="`${prod.item_name}`"/>
+                <products :url="`${prod.url}`" :id="`${index}`" :item="`${prod.item_name}`"/>
             </div>
         </div>
     </div>    
