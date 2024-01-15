@@ -28,7 +28,7 @@
             prod_list2.value = JSON.parse(localStorage.getItem('Products'))
         })
         onUnmounted(()=>{
-            product_list = localStorage.setItem('Products', JSON.stringify(prod_list2.value))
+            prod_list2.value = localStorage.setItem('Products', JSON.stringify(prod_list2.value))
         })
     }
 </script>
