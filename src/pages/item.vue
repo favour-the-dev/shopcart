@@ -5,11 +5,12 @@
     const product_list2 = product_list;
     const route = useRoute()
     const prodId = route.params.id
-    console.log(prodId)
+    const prodId2 = prodId.replace(':', '')
+    console.log(prodId2)
 </script>
 <template>
         <div class="mt-4" v-for="(prod, index) in product_list2" :key="`${index}`">
-            <div class="flex flex-col space-x-4 md:items-center md:flex-row w-full" v-if="prodId.includes(index)">
+            <div class="flex flex-col space-x-4 md:items-center md:flex-row w-full" v-if="prodId2 == index">
                 <div class="md:w-1/2 h-72 mb-2 md:mb-0 md:h-[500px]">
                     <img :src="`${prod.url}`" alt="prodimage" class="rounded-md w-full h-full">    
                 </div>

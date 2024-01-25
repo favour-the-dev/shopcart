@@ -12,6 +12,9 @@
     import prod10 from '../assets/images/prod-10.jpg'
     import products from './products.vue';
     import product_list from './products'
+    import cart from './cart';
+    import { useRouter, useRoute } from 'vue-router'
+    const router = useRouter();
     const images_list = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10];
     const prod_list = product_list;
     const newPodlist = ref([])
@@ -22,6 +25,16 @@
         localStorage.setItem('Products', JSON.stringify(newval))
     }, {deep: true})
     })
+    const addToCart = (id)=>{
+         newPodlist.value.forEach((prod, index)=>{
+            if(id === index){
+                cart.push(prod)
+            }
+            localStorage.setItem('cart', JSON.stringify(cart))
+        })
+        console.log(cart)
+        router.push('/cart')
+    }
     console.log(newPodlist.value)
     onMounted(()=>{
         newPodlist.value = localStorage.setItem('Products', JSON.stringify(newPodlist.value))
@@ -40,7 +53,7 @@
         <h2 class="text-md font-semibold uppercase my-4">Products</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <div :class="`mb-2`" v-for="(prod, index) in newPodlist" :key="index">
-                <products :url="`${prod.url}`" :id="`${index}`" :item="`${prod.item_name}`"/>
+                <products :url="`${prod.url}`" :id="`${index}`" :item="`${prod.item_name}`" @add-to-cart="addToCart(index)"/>
             </div>
         </div>
     </div>    
